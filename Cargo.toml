@@ -1,0 +1,27 @@
+[package]
+name = "example-simd"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+nightly = []
+
+[dependencies]
+wide = "0.7"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+rand = "0.8"
+
+[[bench]]
+name = "benchmark_sum"
+harness = false
+
+[[bench]]
+name = "benchmark_dot"
+harness = false
+
+[[bench]]
+name = "benchmark_distance"
+harness = false
