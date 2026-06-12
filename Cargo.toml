@@ -8,7 +8,7 @@ default = []
 nightly = []
 
 [dependencies]
-wide = "0.8"
+wide = "1.0"
 
 [dev-dependencies]
 criterion = { version = "0.8", features = ["html_reports"] }
