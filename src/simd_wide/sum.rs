@@ -3,12 +3,11 @@ use wide::f32x8;
 /// Array sum (SIMD, wide crate)
 #[inline]
 pub fn sum(data: &[f32]) -> f32 {
-    let chunks = data.chunks_exact(8);
-    let remainder = chunks.remainder();
+    let (chunks, remainder) = data.split_at(data.len() - data.len() % 8);
 
     let mut acc = f32x8::ZERO;
 
-    for chunk in chunks {
+    for chunk in chunks.chunks(8) {
         let v = f32x8::new(chunk.try_into().unwrap());
         acc += v;
     }

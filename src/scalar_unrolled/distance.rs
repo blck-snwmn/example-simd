@@ -10,12 +10,10 @@ pub fn euclidean_distance(a: &[f32], b: &[f32]) -> f32 {
     let mut sum6 = 0.0f32;
     let mut sum7 = 0.0f32;
 
-    let a_chunks = a.chunks_exact(8);
-    let b_chunks = b.chunks_exact(8);
-    let a_remainder = a_chunks.remainder();
-    let b_remainder = b_chunks.remainder();
+    let (a_chunks, a_remainder) = a.split_at(a.len() - a.len() % 8);
+    let (b_chunks, b_remainder) = b.split_at(b.len() - b.len() % 8);
 
-    for (a_chunk, b_chunk) in a_chunks.zip(b_chunks) {
+    for (a_chunk, b_chunk) in a_chunks.chunks(8).zip(b_chunks.chunks(8)) {
         let d0 = a_chunk[0] - b_chunk[0];
         let d1 = a_chunk[1] - b_chunk[1];
         let d2 = a_chunk[2] - b_chunk[2];

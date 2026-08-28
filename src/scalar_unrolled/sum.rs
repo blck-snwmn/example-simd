@@ -10,10 +10,9 @@ pub fn sum(data: &[f32]) -> f32 {
     let mut sum6 = 0.0f32;
     let mut sum7 = 0.0f32;
 
-    let chunks = data.chunks_exact(8);
-    let remainder = chunks.remainder();
+    let (chunks, remainder) = data.split_at(data.len() - data.len() % 8);
 
-    for chunk in chunks {
+    for chunk in chunks.chunks(8) {
         sum0 += chunk[0];
         sum1 += chunk[1];
         sum2 += chunk[2];
